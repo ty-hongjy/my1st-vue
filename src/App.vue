@@ -1,25 +1,13 @@
 <template>
-  <div id="app">
-    <img class="logo" src="./assets/logo.png">
-    <hello></hello>
-    <p>
-      Welcome to your Vue.js app!
-    </p>
-    <p>
-      To get a better understanding of how this boilerplate works, check out
-      <a href="http://vuejs-templates.github.io/webpack" target="_blank">its documentation</a>.
-      It is also recommended to go through the docs for
-      <a href="http://webpack.github.io/" target="_blank">Webpack</a> and
-      <a href="http://vuejs.github.io/vue-loader/" target="_blank">vue-loader</a>.
-      If you have any issues with the setup, please file an issue at this boilerplate's
-      <a href="https://github.com/vuejs-templates/webpack" target="_blank">repository</a>.
-    </p>
-    <p>
-      You may also want to checkout
-      <a href="https://github.com/vuejs/vue-router/" target="_blank">vue-router</a> for routing and
-      <a href="https://github.com/vuejs/vuex/" target="_blank">vuex</a> for state management.
-    </p>
-  </div>
+<div class="app">
+ <h1 v-text="title"></h1>
+<input v-model="newItem" @keyup.enter="addNew">
+ <ul>
+   <li v-for="item in items" v-bind:class="{fininshed:item.isFinished}" v-on:click="toggleFinish(item)">
+     {{item.lable}}
+   </li>
+ </ul>
+ </div>
 </template>
 
 <script>
@@ -28,11 +16,48 @@ import Hello from './components/Hello'
 export default {
   components: {
     Hello
+  },
+  data(){
+    return {
+      title:"this is a todo list",
+      items:[
+          {
+            lable:'coding',
+            isFinished:false
+          },
+          {
+            lable:'wolking',
+            isFinished:true
+
+          }
+      ]
+    }
+  },
+  methods:{
+//        toggleFinish:function(item){
+    toggleFinish(item){
+      //console.log(item)
+      //console.log(item.isFinished=!item.isFinished)
+      item.isFinished=!item.isFinished
+      },
+
+    addNew(){
+      console.log(this.newItem)
+      this.items.push({
+        lable:this.newItem,
+        isFinished:false
+      })
+      this.newItem = ""
+    }
   }
+  
 }
 </script>
 
 <style>
+.fininshed{
+  text-decoration:underline;
+}
 html {
   height: 100%;
 }
