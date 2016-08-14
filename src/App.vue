@@ -19,10 +19,12 @@ export default {
     Hello,
     Store
   },
+
   data(){
     return {
       title:"this is a todo list",
-      items:[
+      items:Store.fetch(),
+/*      [
           {
             lable:'coding',
             isFinished:false
@@ -32,10 +34,13 @@ export default {
             isFinished:true
 
           }
-      ],
+      ]
+ */
+      
       newItem:""
     }
   },
+
   methods:{
 //        toggleFinish:function(item){
     toggleFinish(item){
@@ -46,6 +51,7 @@ export default {
 
     addNew(){
       console.log(this.newItem)
+      console.log(this.items)
       this.items.push({
         lable:this.newItem,
         isFinished:false
@@ -53,6 +59,7 @@ export default {
       this.newItem = ""
     }
   },
+
   watch:{
     items:{
       handler:function(items){
