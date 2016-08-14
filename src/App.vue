@@ -12,10 +12,12 @@
 
 <script>
 import Hello from './components/Hello'
+import Store from './Store'
 
 export default {
   components: {
-    Hello
+    Hello,
+    Store
   },
   data(){
     return {
@@ -30,7 +32,8 @@ export default {
             isFinished:true
 
           }
-      ]
+      ],
+      newItem:""
     }
   },
   methods:{
@@ -49,8 +52,16 @@ export default {
       })
       this.newItem = ""
     }
+  },
+  watch:{
+    items:{
+      handler:function(items){
+        //console.log(val,oldval),
+        Store.save(items)
+      },
+      deep:true
+    }
   }
-  
 }
 </script>
 
