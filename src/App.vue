@@ -7,22 +7,34 @@
      {{item.lable}}
    </li>
  </ul>
+  <p>childen tell me :{{childenwords}}</p>
+  <br>
+  <p>childen tell me :{{childenwords1}}</p>
+ <Component-a msgfromfather="hello sonA" v-on:childen-tell-me-sth='listentoson'><Component-a>
+ <Component-b msgfromfather="hello sonB" v-on:childen-tell-me-sth='listentoson'><Component-b>
  </div>
 </template>
 
 <script>
 import Hello from './components/Hello'
+import ComponentA from './components/ComponentA'
+import ComponentB from './components/ComponentB'
 import Store from './Store'
 
 export default {
+//export  {
   components: {
     Hello,
-    Store
-  },
+    Store,
+    ComponentB,
+    ComponentA
+    },
+
   data(){
     return {
       title:"this is a todo list",
-      items:[
+      items:Store.fetch(),
+/*      [
           {
             lable:'coding',
             isFinished:false
@@ -32,10 +44,15 @@ export default {
             isFinished:true
 
           }
-      ],
-      newItem:""
+      ]
+ */
+
+      newItem:"",
+      childenwords:"",
+      childenwords1:""
     }
   },
+
   methods:{
 //        toggleFinish:function(item){
     toggleFinish(item){
@@ -46,13 +63,21 @@ export default {
 
     addNew(){
       console.log(this.newItem)
+      console.log(this.items)
       this.items.push({
         lable:this.newItem,
         isFinished:false
       })
       this.newItem = ""
+    },
+
+    listentoson(msg){
+      console.log(msg)
+      this.childenwords=msg,
+      this.childenwords1=msg
     }
   },
+
   watch:{
     items:{
       handler:function(items){
