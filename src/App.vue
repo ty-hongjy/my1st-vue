@@ -25,15 +25,10 @@ export default {
 //export  {
   components: {
     Hello,
-<<<<<<< HEAD
     Store,
     ComponentB,
     ComponentA
     },
-=======
-    Store
-  },
->>>>>>> 3c5b2bea9d93986c08b0fb550188a9fe8e180205
 
   data(){
     return {
@@ -51,15 +46,9 @@ export default {
           }
       ]
  */
-<<<<<<< HEAD
-
       newItem:"",
       childenwords:"",
       childenwords1:""
-=======
-      
-      newItem:""
->>>>>>> 3c5b2bea9d93986c08b0fb550188a9fe8e180205
     }
   },
 
